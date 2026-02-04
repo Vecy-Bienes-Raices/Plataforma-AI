@@ -123,17 +123,28 @@ body {
 @layer components {
 
   /* White Glass Panel - Optimized for Mobile Performance (Faux Glass) */
+  /* White Glass Panel - Optimized for Mobile Performance (Faux Glass) */
   .glass-panel {
     /* Mobile Base: Faux Glass (No Blur, Gradient Simulation) */
-    @apply bg-white/[0.03] border border-white/15 rounded-[2.5rem] text-stone-200 shadow-xl;
-    background-image: linear-gradient(145deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0.01) 100%);
-    backdrop-filter: none; /* Critical for mobile performance */
+    @apply bg-white/[0.08] border border-white/30 rounded-[2.5rem] text-stone-200;
+    box-shadow: 0 30px 60px -10px rgba(0, 0, 0, 0.6);
+    /* Even stronger shadow */
+    background-image: linear-gradient(145deg, rgba(255, 255, 255, 0.09) 0%, rgba(255, 255, 255, 0.02) 100%);
+    backdrop-filter: none;
+    /* Removed text-shadow to fix "thick/valurda" look */
+  }
+
+  /* Darker Glass Panel for Price Card */
+  .glass-panel-dark {
+    @apply bg-stone-900/60 border border-white/10 rounded-[2.5rem] text-stone-200;
+    box-shadow: 0 35px 70px -15px rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(20px);
   }
 
   @media (min-width: 768px) {
     .glass-panel {
       /* Desktop: Real Glass (Blur Enabled) */
-      @apply bg-white/[0.02] backdrop-blur-md border-white/10 shadow-2xl;
+      @apply bg-white/[0.08] backdrop-blur-md border-white/30;
       background-image: none;
       backdrop-filter: blur(12px);
     }
@@ -142,19 +153,22 @@ body {
   /* Inner Glass Cards - Optimized */
   .glass-inner {
     /* Mobile: Faux Glass */
-    @apply bg-white/5 border border-white/10 rounded-3xl shadow-lg;
-    background-image: linear-gradient(145deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 100%);
+    @apply bg-white/5 border border-white/20 rounded-3xl;
+    box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.4);
+    /* Stronger internal shadow */
+    background-image: linear-gradient(145deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0) 100%);
     backdrop-filter: none;
   }
 
   @media (min-width: 768px) {
     .glass-inner {
       /* Desktop: Real Glass */
-      @apply bg-white/5 backdrop-blur-xl;
+      @apply bg-white/5 backdrop-blur-xl border-white/20;
       background-image: none;
       backdrop-filter: blur(20px);
     }
   }
+
 
   /* Volcanic Text Shadow */
   .text-shadow-volcanic {

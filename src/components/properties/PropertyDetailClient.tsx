@@ -268,7 +268,7 @@ ${aliadoUrl}`;
                             </div>
 
                             <div className="lg:col-span-4 space-y-6">
-                                <div className="glass-panel p-6 sticky top-24">
+                                <div className="glass-panel-dark p-6 sticky top-24">
                                     <span className="text-white/50 text-sm font-medium uppercase block mb-2">Valor de Inversión</span>
                                     <div className="text-4xl font-bold text-white mb-6">${property.precio.toLocaleString()}</div>
                                     <button
