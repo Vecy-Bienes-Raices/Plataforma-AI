@@ -30,18 +30,50 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
         const propertyTitle = property.titulo || "Propiedad Exclusiva";
         const propertyDescription = property.descripcion?.substring(0, 155) || "Descubre esta increíble propiedad";
 
-        // MODO ALIADO: Sin SEO, solo preview visual básico
+        // MODO ALIADO: Preview atractivo SIN marca VECY
         if (isAliadoMode) {
+            const imageUrl = firstImage.startsWith('http')
+                ? firstImage
+                : `https://inmuebles-col.vercel.app${firstImage}`;
+
+            // Descripción atractiva para WhatsApp
+            const attractiveDesc = `💰 ${formatPrice(property.precio)} | 📍 ${property.ubicacion.barrio || property.ubicacion.ciudad} | 📏 ${property.caracteristicas.area}m²`;
+
             return {
-                title: "Propiedad Exclusiva",
-                description: "Conoce esta increíble oportunidad inmobiliaria.",
+                title: propertyTitle,
+                description: attractiveDesc,
                 robots: {
                     index: false,
                     follow: false,
                     nocache: true,
                 },
-                // NO Open Graph ni Twitter para evitar rastreo social
+                openGraph: {
+                    title: propertyTitle,
+                    description: attractiveDesc,
+                    url: `https://inmuebles-col.vercel.app/p/teu001`,
+                    siteName: "Inmuebles Colombia",
+                    images: [
+                        {
+                            url: imageUrl,
+                            width: 1200,
+                            height: 630,
+                            alt: propertyTitle,
+                        },
+                    ],
+                    locale: "es_CO",
+                    type: "website",
+                },
+                twitter: {
+                    card: "summary_large_image",
+                    title: propertyTitle,
+                    description: attractiveDesc,
+                    images: [imageUrl],
+                },
             };
+        }
+
+        function formatPrice(price: number): string {
+            return `$${price.toLocaleString('es-CO')} COP`;
         }
 
         // MODO NORMAL: SEO Completo

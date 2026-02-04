@@ -115,9 +115,35 @@ export default function PropertyDetailPage({
     };
 
     const generateAliadoLink = () => {
-        const url = new URL(window.location.origin + window.location.pathname);
-        url.searchParams.set('mode', 'aliado');
-        copyToClipboard(url.toString());
+        if (!property) return;
+
+        // Use short code URL for aliados
+        const shortUrl = `${window.location.origin}/p/teu001`;  // TODO: Get code dynamically
+
+        // Format price
+        const formatPrice = (price: number) => {
+            return `$${price.toLocaleString('es-CO')} COP`;
+        };
+
+        // Generate WhatsApp formatted text
+        const shareText = `🏢 *${property.titulo.toUpperCase()}*
+
+💰 *Precio:* ${formatPrice(property.precio)}
+📍 *Ubicación:* ${property.ubicacion.barrio || property.ubicacion.ciudad}
+📏 *Área:* ${property.caracteristicas.area} m²
+🏠 *Detalles:* ${property.caracteristicas.habitaciones} hab, ${property.caracteristicas.banos} baños, ${property.caracteristicas.garajes} garajes
+
+${property.descripcion}
+
+🔗 *Ver Fotos y Ficha Técnica:*
+${shortUrl}`;
+
+        // Copy to clipboard and open WhatsApp
+        copyToClipboard(shareText);
+
+        // Optional: Open WhatsApp directly
+        const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(shareText)}`;
+        window.open(whatsappUrl, '_blank');
     };
 
     // 2. Aliado Workflow
@@ -167,20 +193,36 @@ export default function PropertyDetailPage({
                                     <ChevronLeft className="w-5 h-5 rotate-180 opacity-0 group-hover:opacity-100 transition-opacity" />
                                 </button>
 
+
                                 <button
                                     onClick={generateAliadoLink}
-                                    className="w-full p-4 rounded-xl glass-inner hover:bg-white/10 transition-colors text-white font-bold flex items-center justify-between group border border-white/10"
+                                    className="w-full p-4 rounded-xl glass-inner text-white font-bold flex items-center justify-between group border-2 border-[#D4AF37]/50 relative overflow-hidden transition-all duration-300 hover:border-[#FFD700] hover:bg-[#D4AF37]/10 hover:scale-[1.02]"
+                                    style={{
+                                        boxShadow: 'none',
+                                        transition: 'all 0.3s ease'
+                                    }}
+                                    onMouseEnter={(e) => {
+                                        e.currentTarget.style.boxShadow = '0 0 15px #FFD700, 0 0 30px #CCAC4E, 0 0 45px rgba(212,175,55,0.4)';
+                                    }}
+                                    onMouseLeave={(e) => {
+                                        e.currentTarget.style.boxShadow = 'none';
+                                    }}
                                 >
-                                    <div className="flex items-center gap-3">
-                                        <div className="p-2 bg-white/10 rounded-full">
-                                            <Share2 className="w-5 h-5" />
+                                    <div className="flex items-center gap-3 relative z-10">
+                                        <div className="p-2 bg-white/10 rounded-full group-hover:bg-[#FFD700]/30 transition-all duration-300 group-hover:shadow-[0_0_25px_rgba(255,215,0,0.9)]">
+                                            <Share2 className="w-5 h-5 group-hover:text-[#FFD700] group-hover:drop-shadow-[0_0_8px_rgba(255,215,0,0.8)] transition-all duration-300" />
                                         </div>
                                         <div className="text-left">
                                             <div className="text-sm opacity-60 uppercase tracking-wider">Opción B</div>
-                                            <div className="text-lg">Para Aliados (Sin Datos)</div>
+                                            <div className="text-lg group-hover:text-[#FFD700] group-hover:drop-shadow-[0_0_10px_rgba(255,215,0,0.9)] transition-all duration-300 font-extrabold">Para Aliados (Sin Datos)</div>
                                         </div>
                                     </div>
-                                    <ChevronLeft className="w-5 h-5 rotate-180 opacity-0 group-hover:opacity-100 transition-opacity" />
+                                    <ChevronLeft className="w-5 h-5 rotate-180 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:text-[#FFD700] group-hover:drop-shadow-[0_0_8px_rgba(255,215,0,0.8)] relative z-10" />
+
+                                    {/* Intense electric border animation */}
+                                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                                        <div className="absolute inset-0 rounded-xl animate-pulse bg-gradient-to-r from-transparent via-[#FFD700]/40 to-transparent"></div>
+                                    </div>
                                 </button>
                             </div>
                             <p className="mt-6 text-xs text-center text-white/40">
@@ -552,7 +594,7 @@ export default function PropertyDetailPage({
                                     <div className="mt-8 pt-6 border-t border-white/10">
                                         <p className="text-white/40 text-xs text-center">
                                             Referencia: {property.id} <br />
-                                            Gestionado por VECY Platform
+                                            {!isAliadoMode && "Gestionado por VECY Platform"}
                                         </p>
                                     </div>
                                 </div>
