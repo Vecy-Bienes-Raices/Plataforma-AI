@@ -1,6 +1,5 @@
 import { Metadata } from "next";
-import { doc, getDoc } from "firebase/firestore";
-import { db } from "@/lib/firebase";
+import { adminDb } from "@/lib/firebase-admin";
 import { Property } from "@/types/property";
 
 type Props = {
@@ -15,11 +14,11 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
     const isAliadoMode = mode === 'aliado';
 
     try {
-        // Fetch property data from Firestore
-        const docRef = doc(db, "properties", id);
-        const docSnap = await getDoc(docRef);
+        // Fetch property data from Firestore using Admin SDK
+        const docRef = adminDb.collection("properties").doc(id);
+        const docSnap = await docRef.get();
 
-        if (!docSnap.exists()) {
+        if (!docSnap.exists) {
             return {
                 title: "Propiedad no encontrada | VECY AI",
                 description: "La propiedad que buscas no está disponible.",
