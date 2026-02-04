@@ -150,6 +150,7 @@ export default function EdificioMobileView({ property, isSharedMode = false, age
                         fill
                         className="object-cover"
                         priority
+                        sizes="100vw"
                     />
 
                     {/* Navigation Arrows */}
@@ -179,7 +180,7 @@ export default function EdificioMobileView({ property, isSharedMode = false, age
                             onClick={() => setCurrentImageIndex(idx)}
                             className={`relative w-20 h-20 flex-shrink-0 rounded-xl overflow-hidden border-2 transition-all cursor-pointer ${currentImageIndex === idx ? 'border-brand-gold scale-105 shadow-lg shadow-brand-gold/20' : 'border-white/10 opacity-60'}`}
                         >
-                            <Image src={img} alt="" fill className="object-cover" />
+                            <Image src={img} alt="" fill className="object-cover" sizes="80px" />
                         </div>
                     ))}
                 </div>
@@ -352,7 +353,7 @@ export default function EdificioMobileView({ property, isSharedMode = false, age
                             navigator.clipboard.writeText(window.location.href);
                             alert("¡Enlace copiado! Compártelo con quien quieras.");
                         }}
-                        className="w-full bg-stone-950/90 backdrop-blur-md border border-brand-gold text-brand-gold font-bold py-3 shadow-[0_0_15px_rgba(197,165,114,0.3)] hover:shadow-[0_0_25px_rgba(197,165,114,0.6)] flex items-center justify-center gap-2 uppercase tracking-wide rounded-xl transition-all active:scale-95"
+                        className="w-full bg-stone-950/90 border border-brand-gold text-brand-gold font-bold py-3 shadow-lg flex items-center justify-center gap-2 uppercase tracking-wide rounded-xl transition-all active:scale-95"
                     >
                         <Share2 className="w-5 h-5" />
                         Compartir

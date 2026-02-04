@@ -122,22 +122,38 @@ body {
 /* Utility Components */
 @layer components {
 
-  /* White Glass Panel */
+  /* White Glass Panel - Optimized for Mobile Performance (Faux Glass) */
   .glass-panel {
-    @apply bg-white/[0.02] backdrop-blur-md border border-white/10 rounded-[2.5rem] text-stone-800 shadow-2xl;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-    color: #292524;
-    /* stone-800 override */
+    /* Mobile Base: Faux Glass (No Blur, Gradient Simulation) */
+    @apply bg-white/[0.03] border border-white/15 rounded-[2.5rem] text-stone-200 shadow-xl;
+    background-image: linear-gradient(145deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0.01) 100%);
+    backdrop-filter: none; /* Critical for mobile performance */
   }
 
-  .glass-panel {
-    @apply text-stone-200;
-    text-shadow: none;
+  @media (min-width: 768px) {
+    .glass-panel {
+      /* Desktop: Real Glass (Blur Enabled) */
+      @apply bg-white/[0.02] backdrop-blur-md border-white/10 shadow-2xl;
+      background-image: none;
+      backdrop-filter: blur(12px);
+    }
   }
 
-  /* Inner Glass Cards */
+  /* Inner Glass Cards - Optimized */
   .glass-inner {
-    @apply bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl shadow-lg;
+    /* Mobile: Faux Glass */
+    @apply bg-white/5 border border-white/10 rounded-3xl shadow-lg;
+    background-image: linear-gradient(145deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 100%);
+    backdrop-filter: none;
+  }
+
+  @media (min-width: 768px) {
+    .glass-inner {
+      /* Desktop: Real Glass */
+      @apply bg-white/5 backdrop-blur-xl;
+      background-image: none;
+      backdrop-filter: blur(20px);
+    }
   }
 
   /* Volcanic Text Shadow */
