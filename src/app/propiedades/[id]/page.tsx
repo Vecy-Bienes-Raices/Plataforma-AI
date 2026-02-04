@@ -176,52 +176,34 @@ ${shortUrl}`;
                             </button>
                             <h3 className="text-2xl font-bold text-white mb-6 text-center">Compartir Ficha Técnica</h3>
 
-                            <div className="space-y-4">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                {/* Option A: Direct Client */}
                                 <button
                                     onClick={generateDirectLink}
-                                    className="w-full p-4 rounded-xl bg-brand-gold hover:bg-white transition-colors text-brand-coffee-dark font-bold flex items-center justify-between group"
+                                    className="group relative p-6 rounded-2xl border border-white/10 bg-white/5 hover:bg-white/10 transition-all duration-300 flex flex-col items-center justify-center gap-4 text-center overflow-hidden"
                                 >
-                                    <div className="flex items-center gap-3">
-                                        <div className="p-2 bg-black/10 rounded-full">
-                                            <User className="w-5 h-5" />
-                                        </div>
-                                        <div className="text-left">
-                                            <div className="text-sm opacity-60 uppercase tracking-wider">Opción A</div>
-                                            <div className="text-lg">Cliente Directo</div>
-                                        </div>
+                                    <div className="absolute inset-0 bg-brand-gold/5 group-hover:bg-brand-gold/10 transition-colors" />
+                                    <div className="p-4 bg-brand-gold/20 rounded-full text-brand-gold group-hover:scale-110 transition-transform duration-300">
+                                        <User className="w-8 h-8" />
                                     </div>
-                                    <ChevronLeft className="w-5 h-5 rotate-180 opacity-0 group-hover:opacity-100 transition-opacity" />
+                                    <div>
+                                        <h4 className="text-white font-bold text-lg mb-1">Cliente Directo</h4>
+                                        <p className="text-white/50 text-xs">Enlace estándar para clientes finales</p>
+                                    </div>
                                 </button>
 
-
+                                {/* Option B: Aliados */}
                                 <button
                                     onClick={generateAliadoLink}
-                                    className="w-full p-4 rounded-xl glass-inner text-white font-bold flex items-center justify-between group border-2 border-[#D4AF37]/50 relative overflow-hidden transition-all duration-300 hover:border-[#FFD700] hover:bg-[#D4AF37]/10 hover:scale-[1.02]"
-                                    style={{
-                                        boxShadow: 'none',
-                                        transition: 'all 0.3s ease'
-                                    }}
-                                    onMouseEnter={(e) => {
-                                        e.currentTarget.style.boxShadow = '0 0 15px #FFD700, 0 0 30px #CCAC4E, 0 0 45px rgba(212,175,55,0.4)';
-                                    }}
-                                    onMouseLeave={(e) => {
-                                        e.currentTarget.style.boxShadow = 'none';
-                                    }}
+                                    className="group relative p-6 rounded-2xl border border-brand-gold/30 bg-gradient-to-br from-black/40 to-brand-gold/10 hover:border-brand-gold/60 transition-all duration-300 flex flex-col items-center justify-center gap-4 text-center overflow-hidden shadow-lg hover:shadow-brand-gold/20"
                                 >
-                                    <div className="flex items-center gap-3 relative z-10">
-                                        <div className="p-2 bg-white/10 rounded-full group-hover:bg-[#FFD700]/30 transition-all duration-300 group-hover:shadow-[0_0_25px_rgba(255,215,0,0.9)]">
-                                            <Share2 className="w-5 h-5 group-hover:text-[#FFD700] group-hover:drop-shadow-[0_0_8px_rgba(255,215,0,0.8)] transition-all duration-300" />
-                                        </div>
-                                        <div className="text-left">
-                                            <div className="text-sm opacity-60 uppercase tracking-wider">Opción B</div>
-                                            <div className="text-lg group-hover:text-[#FFD700] group-hover:drop-shadow-[0_0_10px_rgba(255,215,0,0.9)] transition-all duration-300 font-extrabold">Para Aliados (Sin Datos)</div>
-                                        </div>
+                                    <div className="absolute inset-0 bg-brand-gold/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                                    <div className="p-4 bg-brand-gold rounded-full text-brand-coffee-dark group-hover:scale-110 transition-transform duration-300 shadow-[0_0_15px_rgba(212,175,55,0.4)]">
+                                        <Share2 className="w-8 h-8" />
                                     </div>
-                                    <ChevronLeft className="w-5 h-5 rotate-180 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:text-[#FFD700] group-hover:drop-shadow-[0_0_8px_rgba(255,215,0,0.8)] relative z-10" />
-
-                                    {/* Intense electric border animation */}
-                                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-                                        <div className="absolute inset-0 rounded-xl animate-pulse bg-gradient-to-r from-transparent via-[#FFD700]/40 to-transparent"></div>
+                                    <div>
+                                        <h4 className="text-brand-gold font-bold text-lg mb-1">Para Aliados</h4>
+                                        <p className="text-white/50 text-xs">Sin datos de contacto (Marca Blanca)</p>
                                     </div>
                                 </button>
                             </div>
@@ -569,16 +551,26 @@ ${shortUrl}`;
                                         <button
                                             onClick={() => {
                                                 if (isAliadoMode && brokerPhone) {
-                                                    // Aliado sharing their own link
                                                     copyToClipboard(window.location.href);
                                                 } else {
-                                                    // Owner sharing options
                                                     handleShareClick();
                                                 }
                                             }}
-                                            className="w-full bg-stone-950 border border-brand-gold text-brand-gold hover:shadow-[0_0_20px_rgba(197,165,114,0.4)] py-3 rounded-full font-bold transition-all flex items-center justify-center active:scale-95 duration-200 mt-2"
+                                            className="w-full bg-stone-950 border-2 border-[#D4AF37]/60 text-[#D4AF37] py-3 rounded-full font-bold transition-all flex items-center justify-center active:scale-95 duration-200 mt-2 hover:bg-[#D4AF37]/10 relative group overflow-hidden"
+                                            style={{
+                                                textShadow: '0 0 10px rgba(212,175,55,0.5)',
+                                            }}
+                                            onMouseEnter={(e) => {
+                                                e.currentTarget.style.boxShadow = '0 0 20px #FFD700, 0 0 40px #CCAC4E, inset 0 0 10px rgba(212,175,55,0.3)';
+                                                e.currentTarget.style.borderColor = '#FFD700';
+                                            }}
+                                            onMouseLeave={(e) => {
+                                                e.currentTarget.style.boxShadow = 'none';
+                                                e.currentTarget.style.borderColor = 'rgba(212,175,55,0.6)';
+                                            }}
                                         >
-                                            <Share2 className="w-5 h-5 mr-2" />
+                                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#FFD700]/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 pointer-events-none" />
+                                            <Share2 className="w-5 h-5 mr-2 group-hover:animate-pulse" />
                                             {isAliadoMode ? "Compartir Mi Ficha" : "Compartir Ficha Técnica"}
                                         </button>
                                     )}
