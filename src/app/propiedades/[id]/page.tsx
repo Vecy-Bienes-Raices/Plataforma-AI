@@ -556,21 +556,20 @@ ${shortUrl}`;
                                                     handleShareClick();
                                                 }
                                             }}
-                                            className="w-full bg-stone-950 border-2 border-[#D4AF37]/60 text-[#D4AF37] py-3 rounded-full font-bold transition-all flex items-center justify-center active:scale-95 duration-200 mt-2 hover:bg-[#D4AF37]/10 relative group overflow-hidden"
+                                            className="w-full bg-stone-950 border border-brand-gold text-brand-gold py-3 rounded-full font-bold transition-all duration-300 flex items-center justify-center active:scale-95 mt-2 hover:bg-stone-900"
                                             style={{
-                                                textShadow: '0 0 10px rgba(212,175,55,0.5)',
+                                                boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)' // sombra base inicial
                                             }}
                                             onMouseEnter={(e) => {
-                                                e.currentTarget.style.boxShadow = '0 0 20px #FFD700, 0 0 40px #CCAC4E, inset 0 0 10px rgba(212,175,55,0.3)';
-                                                e.currentTarget.style.borderColor = '#FFD700';
+                                                e.currentTarget.style.boxShadow = '0 0 15px #FFD700, 0 0 30px #CCAC4E';
+                                                e.currentTarget.style.borderColor = '#FFF';
                                             }}
                                             onMouseLeave={(e) => {
-                                                e.currentTarget.style.boxShadow = 'none';
-                                                e.currentTarget.style.borderColor = 'rgba(212,175,55,0.6)';
+                                                e.currentTarget.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)';
+                                                e.currentTarget.style.borderColor = '#CCAC4E';
                                             }}
                                         >
-                                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#FFD700]/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 pointer-events-none" />
-                                            <Share2 className="w-5 h-5 mr-2 group-hover:animate-pulse" />
+                                            <Share2 className="w-5 h-5 mr-2" />
                                             {isAliadoMode ? "Compartir Mi Ficha" : "Compartir Ficha Técnica"}
                                         </button>
                                     )}
