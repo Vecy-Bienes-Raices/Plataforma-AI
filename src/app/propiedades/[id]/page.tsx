@@ -117,8 +117,9 @@ export default function PropertyDetailPage({
     const generateAliadoLink = () => {
         if (!property) return;
 
-        // Use short code URL for aliados
-        const shortUrl = `${window.location.origin}/p/teu001`;  // TODO: Get code dynamically
+        // Use standard URL for Aliados (no short code)
+        const baseUrl = window.location.origin + window.location.pathname;
+        const aliadoUrl = `${baseUrl}?mode=aliado`;
 
         // Format price
         const formatPrice = (price: number) => {
@@ -136,7 +137,7 @@ export default function PropertyDetailPage({
 ${property.descripcion}
 
 🔗 *Ver Fotos y Ficha Técnica:*
-${shortUrl}`;
+${aliadoUrl}`;
 
         // Copy to clipboard and open WhatsApp
         copyToClipboard(shareText);
