@@ -92,11 +92,11 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
             openGraph: {
                 title: propertyTitle,
                 description: propertyDescription,
-                url: `https://vecy-plataforma-ai.vercel.app/propiedades/${id}`,
+                url: `https://inmuebles-col.vercel.app/propiedades/${id}`,
                 siteName: "VECY AI",
                 images: [
                     {
-                        url: firstImage.startsWith('http') ? firstImage : `https://vecy-plataforma-ai.vercel.app${firstImage}`,
+                        url: firstImage.startsWith('http') ? firstImage : `https://inmuebles-col.vercel.app${firstImage}`,
                         width: 1200,
                         height: 630,
                         alt: propertyTitle,

@@ -53,7 +53,7 @@ export default function PropertyDetailPage({
                     setError("Propiedad no encontrada en la base de datos.");
                     console.log("No such document!");
                 }
-            } catch (err: any) {
+            } catch (err: unknown) {
                 console.error("Error fetching property:", err);
                 setError("Error cargando la propiedad. Por favor intenta de nuevo.");
             } finally {

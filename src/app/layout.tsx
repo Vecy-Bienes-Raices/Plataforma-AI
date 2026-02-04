@@ -14,13 +14,13 @@ export const metadata: Metadata = {
   authors: [{ name: "VECY Bienes Raíces" }],
   creator: "VECY Bienes Raíces",
   publisher: "VECY Bienes Raíces",
-  metadataBase: new URL('https://vecy-plataforma-ai.vercel.app'),
+  metadataBase: new URL('https://inmuebles-col.vercel.app'),
 
   // Open Graph
   openGraph: {
     title: "VECY AI | Plataforma Inmobiliaria Inteligente",
     description: "Gestión inmobiliaria avanzada con Inteligencia Artificial y diseño Premium.",
-    url: "https://vecy-plataforma-ai.vercel.app",
+    url: "https://inmuebles-col.vercel.app",
     siteName: "VECY AI",
     images: [
       {
@@ -44,9 +44,9 @@ export const metadata: Metadata = {
 
   // Icons/Favicon
   icons: {
-    icon: "/vecyai.png",
-    shortcut: "/vecyai.png",
-    apple: "/vecyai.png",
+    icon: "/icon.png",
+    shortcut: "/icon.png",
+    apple: "/icon.png",
   },
 };
 
