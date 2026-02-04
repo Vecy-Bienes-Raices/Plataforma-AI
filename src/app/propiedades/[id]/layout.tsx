@@ -10,7 +10,7 @@ type Props = {
 export async function generateMetadata({ params, searchParams }: Props): Promise<Metadata> {
     const { id } = await params;
     const resolvedSearchParams = await searchParams;
-    const mode = resolvedSearchParams.mode as string | undefined;
+    const mode = resolvedSearchParams?.mode as string | undefined;
     const isAliadoMode = mode === 'aliado';
 
     try {
