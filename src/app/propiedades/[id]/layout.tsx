@@ -50,7 +50,7 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
                 openGraph: {
                     title: propertyTitle,
                     description: attractiveDesc,
-                    url: `https://inmuebles-col.vercel.app/p/teu001`,
+                    url: `https://inmuebles-col.vercel.app/propiedades/${id}`,
                     siteName: "Inmuebles Colombia",
                     images: [
                         {
@@ -110,7 +110,7 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
                 card: "summary_large_image",
                 title: propertyTitle,
                 description: propertyDescription,
-                images: [firstImage.startsWith('http') ? firstImage : `https://vecy-plataforma-ai.vercel.app${firstImage}`],
+                images: [firstImage.startsWith('http') ? firstImage : `https://inmuebles-col.vercel.app${firstImage}`],
             },
 
             robots: {

@@ -21,7 +21,7 @@ export default function ShortLinkPage({
                 router.replace(`/propiedades/${propertyId}?mode=aliado`);
             } else {
                 // Invalid code, redirect to home
-                router.replace('/');
+                router.replace("/");
             }
         }
 

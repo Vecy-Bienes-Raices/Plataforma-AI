@@ -1,5 +1,6 @@
 import { initializeApp, getApps, cert, App } from "firebase-admin/app";
 import { getFirestore, Firestore } from "firebase-admin/firestore";
+import { Property } from "@/types/property";
 
 let adminApp: App;
 let adminDb: Firestore;
@@ -32,4 +33,13 @@ if (!getApps().length) {
     adminDb = getFirestore(adminApp);
 }
 
-export { adminApp, adminDb };
+
+async function getProperty(id: string): Promise<Property | null> {
+    const docRef = adminDb.collection("properties").doc(id);
+    const docSnap = await docRef.get();
+    if (!docSnap.exists) return null;
+    return { id: docSnap.id, ...docSnap.data() } as Property;
+}
+
+export { adminApp, adminDb, getProperty };
+export type { Property }; 
